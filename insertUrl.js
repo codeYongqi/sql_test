@@ -18,30 +18,17 @@ function buildURL() {
     + randomString(lenB) +'/'+ randomString(lenC)
 }
 
-async function insertInfo() {
-    //console.log(targetType)
+async function insertUrl() {
 
     var start = performance.now();
     for(j = 0; j < 500000; j++) {
         console.log(j)
-        targetType = Math.floor( Math.random()*10 );
-        id = String(j+1).padStart(8, 0);
-        // console.log(id);
-
-        date = new Date().toLocaleString();
-        date = require('moment')().format('YYYY-MM-DD HH:mm:ss');
-        console.log(date)
         url = buildURL();
-        // console.log(url);
-
-        const rows = await query(`select uuid from customer_uuid where id = ${(j % 6000) + 1}`);
-        customerId = rows[0].uuid;  
-        //console.log(customerId);
-        await query(`insert into test_table_50 (customer_id, id, target_type, target, created_time) values (\'${customerId}\', \'${id}\', ${targetType}, \'${url}\',\'${date}\')`);
+        await query(`insert into target(target) values ( \'${url}\')`);
     }
         var end = performance.now();
         console.log('cost is,',(end - start) / 1000, ' s');
 }
 
-insertInfo()
+insertUrl();
 
