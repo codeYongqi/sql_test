@@ -17,7 +17,7 @@ const selectTest = async function selectTest(time) {
         const customerId = rows[0].uuid;  
 
     	let start = performance.now();
-		const res = await query(`select * from test_table_50 where id = ${id} and customer_id = \'${customerId}\'`)
+		const res = await query(`select * from test_table_10 where id = ${id} and customer_id = \'${customerId}\'`)
     	let end = performance.now();
 		let cost = end - start;
 
@@ -50,4 +50,4 @@ const test = async function test(count, time) {
 	await Promise.all(task);
 }
 
-test (50, 1000)
+test (1, 1000)
