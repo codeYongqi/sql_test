@@ -1,4 +1,4 @@
-const { query } = require("./Mysql");
+const { query } = require("../../insert_taskdb/mysql");
 const { performance } = require('perf_hooks');
 
 
