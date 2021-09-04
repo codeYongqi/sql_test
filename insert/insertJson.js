@@ -16,6 +16,7 @@ const geneTargetData = function generateTargetDataByFaker() {
   return target;
 }
 
+// insert json and string type cost time test
 const insert = async function () {
       let FakeData = geneTargetData();
       let insertData = JSON.stringify(FakeData);
