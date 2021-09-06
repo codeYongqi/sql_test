@@ -1,6 +1,7 @@
 const { query } = require('../mysql');
 const faker = require('faker');
 const { performance } = require('perf_hooks');
+const Target = require('../model/target');
 
 const geneTargetData = function generateTargetDataByFaker() {
   let target = {};
@@ -29,6 +30,24 @@ const insert = async function () {
 
     	start = performance.now();
 		  await query(`insert into json_test_50w (id, target) values (\'50001012\', \'${insertData}\')`);
+    	end = performance.now();
+		  cost = end - start;
+      console.log(cost);
+
+    	start = performance.now();
+      await Target.create({
+        id: '51001013',
+        target: FakeData 
+      })
+    	end = performance.now();
+		  cost = end - start;
+      console.log(cost);
+
+    	start = performance.now();
+      await Target.create({
+        id: '51001014',
+        targetString: insertData
+      })
     	end = performance.now();
 		  cost = end - start;
       console.log(cost);
