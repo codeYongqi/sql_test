@@ -9,6 +9,9 @@ Target.init({
   },
   target: {
     type: DataTypes.JSON,
+  },
+  targetString: {
+    type: DataTypes.STRING,
   }
 }, {
   sequelize,
