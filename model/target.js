@@ -16,7 +16,7 @@ Target.init({
 }, {
   sequelize,
   modelName: 'Target',
-  tableName: 'json_test_50w',
+  tableName: 'test',
   underscored: true,
   timestamps: false,
 })
