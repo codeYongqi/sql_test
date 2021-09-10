@@ -1,6 +1,5 @@
 const { Op } = require("sequelize");
-const BinaryTask = require("../model/binaryTarget");
-const uuidUtil = require('node-uuid');
+const Task = require("../model/Task");
 
 const findByCustomerIdAndId = async function selectByCusAndId(customerId , idArr) {
 	// when given arguments are invalid
@@ -16,7 +15,7 @@ const findByCustomerIdAndId = async function selectByCusAndId(customerId , idArr
 	];
 
 	options.where = {
-		uuid: uuidUtil.parse(customerId, Buffer.alloc(16)),
+    customerId,
 		id: {
 			[Op.or]: idArr
 		},
@@ -24,14 +23,14 @@ const findByCustomerIdAndId = async function selectByCusAndId(customerId , idArr
 
 	options.limit = 65535;
 
-	let returnTask = await BinaryTask.findAll(options);
+	let returnTask = await Task.findAll(options);
 	return returnTask.map(x => x['dataValues'])
 }
 
 async function test () {
-	let res = await findByCustomerIdAndId('397FA1F131F442EAE74E599FC44EEFF9',['00000010']);
+	let res = await findByCustomerIdAndId('5206e8fc-bb86-4119-a9e4-5aed13483ea7',['00000001']);
 	console.log(res);
 }
 
-// test();
+ // test();
 module.exports = { findByCustomerIdAndId };
