@@ -8,8 +8,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@sgeb/sequelize-binary-uuid": "^1.0.0-1.pr3",
+    "faker": "^5.5.3",
     "moment": "^2.29.1",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.0",
+    "node-uuid": "^1.4.8",
+    "sequelize": "^6.6.5",
+    "sequelize-binary-uuid": "^1.0.0"
   },
   "repository": {
     "type": "git",

@@ -1,9 +1,9 @@
-const { getUUID} = require('../../insert_taskdb/getParams');
+const { getUUID } = require('../../insert_taskdb/getParams');
 const faker = require('faker');
-const uuidParse = require('uuid-parse');
+
 const BinaryTask = require('../model/binaryTarget');
 
-const generateFakeData =  function (type) {
+const generateFakeData = function (type) {
   switch (type) {
     case 1:
       return faker.random.words() + faker.random.alphaNumeric();
@@ -32,14 +32,13 @@ const generateFakeData =  function (type) {
 }
 
 const insertBinaryTask = async function (index) {
-  for (let i = index; i < index + 1; i++){
+  for (let i = index; i < index + 5; i++) {
     console.log(i);
-    
+
     let taskInfo = {};
 
-    taskInfo.customerId = uuidParse.parse(await getUUID(i));
-    console.log(taskInfo.customerId);
-    taskInfo.id = String(i+1).padStart(8, 0)
+    taskInfo.uuid = uuidParse.parse(await getUUID(i));
+    taskInfo.id = String(i + 1).padStart(8, 0)
     taskInfo.targetType = (i % 8) + 1;
     taskInfo.target = '{}';
     taskInfo.displayTarget = '{}';
@@ -61,18 +60,18 @@ const insertBinaryTask = async function (index) {
     taskInfo.taskCount = Math.floor(Math.random() * 10);
     taskInfo.accountName = 'richard_james';
     taskInfo.sourceName = Math.floor(Math.random() * 10);
-    taskInfo.sourceId = String(i+1).padStart(36, 0)
+    taskInfo.sourceId = String(i + 1).padStart(36, 0)
     taskInfo.description = '{}';
 
     BinaryTask.create(taskInfo);
   }
 }
 
-insertBinaryTask(2);
+insertBinaryTask(5);
 
 const runInsertBinaryTask = async function () {
   let insertPromiseArr = []
-  for (let i = 0; i<500; i++){
+  for (let i = 0; i < 500; i++) {
     insertPromiseArr.push(updateBinaryTask(1000 * i));
   }
   await Promise.all(insertPromiseArr);

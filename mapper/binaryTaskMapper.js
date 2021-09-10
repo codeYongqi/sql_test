@@ -1,40 +1,37 @@
-const Task = require("../models/Task")
 const { Op } = require("sequelize");
-const EmptyObjectError = require('../error/EmptyObjectErrror');
-const SubTask = require("../models/Subtask");
+const BinaryTask = require("../model/binaryTarget");
 
 const findByCustomerIdAndId = async function selectByCusAndId(customerId , idArr) {
 	// when given arguments are invalid
-
 	let options = {}
 
 	options.attributes = [
-	['id', 'taskId'],
-	'taskStatus',
-	'createdTime',
-	'sourceId',
-	'targetType',
-	'target',
+		['id', 'taskId'],
+		'taskStatus',
+		'createdTime',
+		'sourceId',
+		'targetType',
+		'target',
 	];
 
-	options.include = [{
-			model: SubTask,
-			attributes: ['taskStatus','finishedTime'],
-			required: false,
-			where: {
-				customerId
-			}
-		}];
-
 	options.where = {
-			customerId,
-			id: {
-				[Op.or]: idArr
-			},
+		uuid: uuidParse.parse(customerId),
+		id: {
+			[Op.or]: idArr
+		},
 	};
 
 	options.limit = 65535;
 
-	let returnTask = await Task.findAll(options);
-	return returnTask.map(x => x['dataValues'])
+	console.log(options);
+	let returnTask = await BinaryTask.findAll(options);
+	return returnTask;
+	// return returnTask.map(x => x['dataValues'])
 }
+
+async function test () {
+	let res = await findByCustomerIdAndId('397FA1F131F442EAE74E599FC44EEFF9',['00000010']);
+	console.log(res);
+}
+
+test();
