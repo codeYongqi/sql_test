@@ -1,5 +1,6 @@
 const { getUUID } = require('../../insert_taskdb/getParams');
 const faker = require('faker');
+const uuidUtil = require('node-uuid')
 
 const BinaryTask = require('../model/binaryTarget');
 
@@ -32,12 +33,12 @@ const generateFakeData = function (type) {
 }
 
 const insertBinaryTask = async function (index) {
-  for (let i = index; i < index + 5; i++) {
+  for (let i = index; i < index + 1000; i++) {
     console.log(i);
 
     let taskInfo = {};
 
-    taskInfo.uuid = uuidParse.parse(await getUUID(i));
+    taskInfo.uuid = uuidUtil.parse(await getUUID(i), Buffer.alloc(16));
     taskInfo.id = String(i + 1).padStart(8, 0)
     taskInfo.targetType = (i % 8) + 1;
     taskInfo.target = '{}';
@@ -67,15 +68,12 @@ const insertBinaryTask = async function (index) {
   }
 }
 
-insertBinaryTask(5);
-
 const runInsertBinaryTask = async function () {
   let insertPromiseArr = []
   for (let i = 0; i < 500; i++) {
-    insertPromiseArr.push(updateBinaryTask(1000 * i));
+    insertPromiseArr.push(insertBinaryTask(1000 * i));
   }
   await Promise.all(insertPromiseArr);
-  console.log(`it cost ${end - start} millionseconds`);
 }
 
-// runInsertBinaryTask();
+runInsertBinaryTask();
