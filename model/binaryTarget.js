@@ -4,7 +4,7 @@ const { DataTypes, Model } = require('sequelize');
 class BinaryTask extends Model {}
 
 BinaryTask.init({
-	customerId: {
+	uuid: {
 		type: DataTypes.BLOB,
 		primaryKey: true,
 	},
