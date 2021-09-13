@@ -1,8 +1,8 @@
+const { findByCustomerIdAndId } = require("../../../mapper/binaryTaskMapper");
 const { query } = require("../../../../insert_taskdb/mysql");
 const { performance } = require('perf_hooks');
-const { findByCustomerIdAndId } = require("../../../mapper/taskMapper");
 
-const testTask = async function selectTest(time, uuid) {
+const selectAutoITask = async function selectTest(time, uuid) {
   let maxCost = -1;
   let minCost = 3600;
   let averageCost = 0;
@@ -10,12 +10,13 @@ const testTask = async function selectTest(time, uuid) {
   //循环次数
   let count = time
 
-  const customerId = '000042be-987b-4b06-93a9-722764676bc4';
+  // todo
+  const customerId 
 
   for (let j = 0; j < count; j++) {
 
-    const id = '00054216'
-
+    //todo
+    const id ;
     console.log(j)
 
     let start = performance.now();
@@ -37,7 +38,7 @@ const testTask = async function selectTest(time, uuid) {
   //console.log('the min Cost is ', minCost, 'ms');
   console.log('the average Cost is ', averageCost / count, 'ms');
   //console.log('the accurency  is ', accurency / count);
-  await query(`insert into test_res (max_cost, min_cost, average_cost, accuracy) values (${maxCost}, ${minCost}, ${averageCost / count}, ${accurency / count})`)
+  await query(`insert into test_1_res (max_cost, min_cost, average_cost, accuracy) values (${maxCost}, ${minCost}, ${averageCost / count}, ${accurency / count})`)
 
 }
 
@@ -48,7 +49,7 @@ const testTask = async function selectTest(time, uuid) {
 const test = async function test(count, time) {
   let task = []
   for (i = 0; i < count; i++) {
-    task.push(testTask(time, i))
+    task.push(selectAutoITask(time, i))
   }
   await Promise.all(task);
 }
