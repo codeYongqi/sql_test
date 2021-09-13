@@ -1,4 +1,4 @@
-const sequelize = require('../resource/sequelizedMysqlConnecter') 
+const sequelize = require('../resource/mysqlSqlConnecter') 
 const { DataTypes, Model } = require('sequelize');
 
 class BinaryTask extends Model {}

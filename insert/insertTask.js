@@ -32,7 +32,7 @@ const generateFakeData = function (type) {
 }
 
 const insertTask = async function (index) {
-  for (let i = index; i < index + 1000; i++) {
+  for (let i = index; i < index + 10000; i++) {
     console.log(i);
 
     let taskInfo = {};
@@ -63,15 +63,15 @@ const insertTask = async function (index) {
     taskInfo.sourceId = String(i + 1).padStart(36, 0)
     taskInfo.description = '{}';
 
-    Task.create(taskInfo);
+    await Task.create(taskInfo);
   }
 }
 
 
 const runInsertBinaryTask = async function () {
   let insertPromiseArr = []
-  for (let i = 0; i < 300; i++) {
-    insertPromiseArr.push(insertTask(1000 * i));
+  for (let i = 0; i < 100; i++) {
+    insertPromiseArr.push(insertTask(10000 * i));
   }
   await Promise.all(insertPromiseArr);
 }

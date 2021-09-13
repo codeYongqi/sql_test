@@ -2,7 +2,7 @@ const { getUUID } = require('../../insert_taskdb/getParams');
 const faker = require('faker');
 const uuidUtil = require('node-uuid')
 
-const BinaryTask = require('../model/binaryTarget');
+const BinaryTask = require('../model/BinaryTask');
 
 const generateFakeData = function (type) {
   switch (type) {
