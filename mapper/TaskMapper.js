@@ -27,10 +27,6 @@ const findByCustomerIdAndId = async function selectByCusAndId(customerId , idArr
 	return returnTask.map(x => x['dataValues'])
 }
 
-async function test () {
-	let res = await findByCustomerIdAndId('5206e8fc-bb86-4119-a9e4-5aed13483ea7',['00000001']);
-	console.log(res);
-}
 
  // test();
 module.exports = { findByCustomerIdAndId };
