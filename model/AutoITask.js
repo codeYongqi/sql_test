@@ -1,16 +1,18 @@
 const sequelize = require('../resource/mysqlSqlConnecter') 
 const { DataTypes, Model } = require('sequelize');
 
-class BinaryTask extends Model {}
+class AutoITask extends Model {}
 
-BinaryTask.init({
+AutoITask.init({
+	priId: {
+		type: DataTypes.INTEGER,
+		primaryKey: true
+	},
 	uuid: {
 		type: DataTypes.BLOB,
-		primaryKey: true,
 	},
 	id: {
 		type: DataTypes.CHAR(8),
-		primaryKey: true
 	},
 	targetType: DataTypes.INTEGER,
 	target: DataTypes.STRING(8192),
@@ -31,14 +33,14 @@ BinaryTask.init({
 	description: DataTypes.STRING(10000),
 }, {
 	sequelize,
-	modelName: 'BinaryTask',
-	tableName: 'task_binary',
+	modelName: 'AutoITask',
+	tableName: 'task_autoi_10w',
 	underscored: true,
 	timestamps: false,
 })
 
 
-module.exports = BinaryTask;
+module.exports = AutoITask;
 
 
 
