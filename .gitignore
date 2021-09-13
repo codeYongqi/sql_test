@@ -5,3 +5,5 @@ insert_url.js
 Mysql.js
 
 update_url.js
+
+resource/mysqlSqlConnector.js
