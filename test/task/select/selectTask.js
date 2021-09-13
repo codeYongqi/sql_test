@@ -10,12 +10,11 @@ const testTask = async function selectTest(time, uuid) {
   //循环次数
   let count = time
 
-  const rows = await query(`select uuid from customer_uuid where id = ${(uuid % 6000) + 1}`);
-  const customerId = rows[0].uuid;
+  const customerId = '000042be-987b-4b06-93a9-722764676bc4';
 
   for (let j = 0; j < count; j++) {
 
-    const id = String((j * 6000 + uuid + 1) % 60000).padStart(8, 0);
+    const id = '00054216'
 
     console.log(j)
 
@@ -38,7 +37,7 @@ const testTask = async function selectTest(time, uuid) {
   //console.log('the min Cost is ', minCost, 'ms');
   console.log('the average Cost is ', averageCost / count, 'ms');
   //console.log('the accurency  is ', accurency / count);
-  await query(`insert into test_1_res (max_cost, min_cost, average_cost, accuracy) values (${maxCost}, ${minCost}, ${averageCost / count}, ${accurency / count})`)
+  await query(`insert into test_res (max_cost, min_cost, average_cost, accuracy) values (${maxCost}, ${minCost}, ${averageCost / count}, ${accurency / count})`)
 
 }
 
