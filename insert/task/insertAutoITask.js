@@ -1,8 +1,8 @@
 const { getUUID } = require('../../../insert_taskdb/getParams');
 const AutoITask = require('../../model/AutoITask');
 
-const insertBinaryTask = async function (index) {
-  for (let i = index; i < index + 1000; i++) {
+const insertAutoITask = async function (index) {
+  for (let i = index; i < index + 2000; i++) {
     console.log(i);
 
     let taskInfo = {};
@@ -37,12 +37,12 @@ const insertBinaryTask = async function (index) {
   }
 }
 
-const runInsertBinaryTask = async function () {
+const runInsertAutoITask = async function () {
   let insertPromiseArr = []
-  for (let i = 0; i < 100; i++) {
-    insertPromiseArr.push(insertBinaryTask(1000 * i));
+  for (let i = 0; i < 500; i++) {
+    insertPromiseArr.push(insertAutoITask(2000 * i));
   }
   await Promise.all(insertPromiseArr);
 }
 
-runInsertBinaryTask();
+runInsertAutoITask();
