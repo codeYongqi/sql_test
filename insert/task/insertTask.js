@@ -1,35 +1,5 @@
 const { getUUID } = require('../../../insert_taskdb/getParams');
-const faker = require('faker');
 const Task = require('../../model/Task');
-
-
-const generateFakeData = function (type) {
-  switch (type) {
-    case 1:
-      return faker.random.words() + faker.random.alphaNumeric();
-
-    case 2:
-      return faker.internet.email();
-
-    case 3:
-      return faker.system.fileName();
-
-    case 4:
-      return faker.system.filePath();
-
-    case 5:
-      return faker.internet.ip();
-
-    case 6:
-      return faker.internet.domainName();
-
-    case 7:
-      return faker.internet.url();
-
-    case 8:
-      return faker.internet.userName();
-  }
-}
 
 const insertTask = async function (index) {
   for (let i = index; i < index + 10000; i++) {
