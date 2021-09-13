@@ -1,8 +1,8 @@
 .vscode
 node_modules
-insert_url.js
+insert_url.
 
-Mysql.js
+mysql/config.js
 
 update_url.js
 
