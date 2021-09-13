@@ -1,7 +1,7 @@
-const { query } = require('../mysql');
+const { query } = require('../../resource/mysql');
 const faker = require('faker');
 const { performance } = require('perf_hooks');
-const Target = require('../model/target');
+const Target = require('../../model/target');
 
 const geneTargetData = function generateTargetDataByFaker() {
   let target = {};
