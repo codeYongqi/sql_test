@@ -1,5 +1,5 @@
-const { findByCustomerIdAndId } = require("../../mapper/binaryTaskMapper");
-const { query } = require("../../../insert_taskdb/mysql");
+const { findByCustomerIdAndId } = require("../../../mapper/binaryTaskMapper");
+const { query } = require("../../../../insert_taskdb/mysql");
 const { performance } = require('perf_hooks');
 
 const testBinary = async function selectTest(time, uuid) {
