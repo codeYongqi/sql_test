@@ -1,6 +1,5 @@
 const { Op } = require("sequelize");
-const Task = require("../model/Task");
-
+const AutoITask = require("../model/AutoITask")
 const findByCustomerIdAndId = async function selectByCusAndId(customerId , idArr) {
 	// when given arguments are invalid
 	let options = {}
@@ -23,7 +22,7 @@ const findByCustomerIdAndId = async function selectByCusAndId(customerId , idArr
 
 	options.limit = 65535;
 
-	let returnTask = await Task.findAll(options);
+	let returnTask = await AutoITask.findAll(options);
 	return returnTask.map(x => x['dataValues'])
 }
 

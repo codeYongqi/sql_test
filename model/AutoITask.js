@@ -1,4 +1,4 @@
-const sequelize = require('../resource/mysqlSqlConnecter') 
+const sequelize = require('../resource/sequelize/mysqlSqlConnecter') 
 const { DataTypes, Model } = require('sequelize');
 
 class AutoITask extends Model {}
@@ -8,8 +8,8 @@ AutoITask.init({
 		type: DataTypes.INTEGER,
 		primaryKey: true
 	},
-	uuid: {
-		type: DataTypes.BLOB,
+	customerId: {
+		type: DataTypes.CHAR(36),
 	},
 	id: {
 		type: DataTypes.CHAR(8),
@@ -34,7 +34,7 @@ AutoITask.init({
 }, {
 	sequelize,
 	modelName: 'AutoITask',
-	tableName: 'task_autoi_10w',
+	tableName: 'task_autoi_30w',
 	underscored: true,
 	timestamps: false,
 })
