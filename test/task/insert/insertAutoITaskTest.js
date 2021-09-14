@@ -1,6 +1,7 @@
 const { query } = require("../../../../insert_taskdb/mysql");
 const { performance } = require('perf_hooks');
 const AutoITask = require("../../../model/AutoITask");
+const { getUUID } = require("../../../../insert_taskdb/getParams");
 
 const generateAutoITaskInfo = async function autoITaskInfo(i) {
     let autoITaskInfo = {};
@@ -40,12 +41,12 @@ const insertAutoITaskTest = async function insertTest(index) {
   let averageCost = 0;
   let accurency = 0;
   //循环次数
-  let count = time
+  let count = 100; 
 
-  for (let j = index; j < index + 1000; j++) {
+  for (let j = index; j < index + 100; j++) {
     console.log(j)
 
-    let autoITaskInfo = generateAutoITaskInfo();
+    let autoITaskInfo = await generateAutoITaskInfo(j);
 
     let start = performance.now();
     const res = await AutoITask.create(autoITaskInfo);
@@ -65,7 +66,7 @@ const insertAutoITaskTest = async function insertTest(index) {
   //console.log('the min Cost is ', minCost, 'ms');
   console.log('the average Cost is ', averageCost / count, 'ms');
   //console.log('the accurency  is ', accurency / count);
-  await query(`insert into test_1_res (max_cost, min_cost, average_cost, accuracy) values (${maxCost}, ${minCost}, ${averageCost / count}, ${accurency / count})`)
+  await query(`insert into test_res (max_cost, min_cost, average_cost, accuracy) values (${maxCost}, ${minCost}, ${averageCost / count}, ${accurency / count})`)
 }
 
 /**
@@ -74,8 +75,8 @@ const insertAutoITaskTest = async function insertTest(index) {
  */
 const test = async function test() {
   let task = []
-  for (i = 0; i < 100; i++) {
-    task.push(insertAutoITaskTest(100 * i))
+  for (i = 0; i < 10; i++) {
+    task.push(insertAutoITaskTest(100 * i + 2000000))
   }
   await Promise.all(task);
 }

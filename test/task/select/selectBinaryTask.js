@@ -10,11 +10,12 @@ const testBinary = async function selectTest(time, uuid) {
   //循环次数
   let count = time
 
-  const customerId = '000042be-987b-4b06-93a9-722764676bc4';
+  const rows = await query(`select uuid from customer_uuid where id = ${(uuid % 6000) + 1}`);
+  const customerId = rows[0].uuid;
 
   for (let j = 0; j < count; j++) {
 
-    const id = '00054216'
+    const id = String((j * 6000 + uuid + 1) % 60000).padStart(8, 0);
 
     console.log(j)
 
@@ -53,4 +54,4 @@ const test = async function test(count, time) {
   await Promise.all(task);
 }
 
-test(1, 1000);
+test(30, 1000);
